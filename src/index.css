@@ -1,0 +1,124 @@
+body {
+  padding: 20px 60px;
+  text-align: center;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+h1 {
+  color: rgb(3, 170, 170);
+}
+
+button {
+  border: none;
+  font-weight: 700;
+  color: white;
+  background-color: rgb(4, 187, 126);
+  font-size: 1.2rem;
+  border-radius: 5px;
+  padding: 13px 2rem;
+  margin-left: -5px;
+  cursor: pointer;
+}
+input {
+  border: none;
+  border: 2px solid gray;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  padding: 10px 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard {
+  width: fit-content;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 8px 8px gray;
+}
+
+.delete {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: white;
+  padding: 8px;
+  background-color: rgb(224, 218, 218);
+  border-radius: 50%;
+  margin-bottom: 200px;
+  margin-right: 20px;
+  border: 1px solid rgb(196, 195, 195);
+}
+.delete:hover {
+  border: 1px solid red;
+}
+
+.info-box {
+  background-color: #eff5fb;
+  padding: 20px 50px;
+  height: 200px;
+}
+.month {
+  border-radius: 5px;
+  color: white;
+  padding: 0px 0.6rem;
+  display: inline-block;
+  background-color: #ff6347;
+}
+
+.active-box {
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.calender {
+  padding: 25px;
+  width: 38rem;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.day {
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 4.6rem;
+  height: 2.6rem;
+  box-sizing: border-box;
+  box-shadow: 2px 4px 6px gray;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.day:hover {
+  border: 1px solid salmon;
+}
+
+.active {
+  background-color: #04bb7e;
+}
+
+/* .calender .day {
+  border: 1px solid salmon;
+  background-color: #04bb7e;
+} */
