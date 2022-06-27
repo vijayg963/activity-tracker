@@ -36,20 +36,30 @@ class Main extends React.Component {
   constructor() {
     super();
     this.state = {
-      display: false,
       title: '',
       monthData: [],
     };
   }
-  addItem(e) {
+  addItem = (e) => {
     e.preventDefault();
 
     const title = this.state.title;
     const monthLimit = getLimit(getMonth);
-    const obj = { title: title, monthLimit: monthLimit, getMonth: getMonth };
-    this.state.monthData.push(obj);
-    console.log(obj);
-  }
+    const obj = {
+      title: title,
+      monthLimit: monthLimit,
+      getMonth: getMonth,
+      selectDate: [],
+    };
+
+    // this.state.monthData.push(obj);
+    this.setState((prevState) => ({
+      ...prevState,
+      monthData: [...prevState.monthData, obj],
+    }));
+    // console.log(obj);
+  };
+
   handleDashboard = () => {
     this.setState({
       display: true,
@@ -61,21 +71,52 @@ class Main extends React.Component {
       title: getValue,
     });
   };
-  handleDelete = () => {
+  componentDidMount() {
+    const monthData = JSON.parse(localStorage.getItem('activity')) || [];
     this.setState({
-      display: false,
+      ...this.state,
+      monthData,
+    });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.monthData !== this.state.monthData) {
+      localStorage.setItem('activity', JSON.stringify(this.state.monthData));
+    }
+  }
+  delete = (index) => {
+    const d = [...this.state.monthData];
+    d.splice(index, 1);
+    this.setState({
+      ...this.state,
+      monthData: d,
     });
   };
+  addSelectedDate = (day, index) => {
+    let selectDate = this.state.monthData[index].selectDate;
+    if (selectDate.includes(day)) {
+      const clonedData = { ...this.state.monthData[index] };
+      clonedData.selectDate = clonedData.selectDate.filter((d) => d !== day);
+      const clonedMonthData = [...this.state.monthData];
+      clonedMonthData[index] = clonedData;
+      this.setState({
+        ...this.state,
+        monthData: clonedMonthData,
+      });
+    } else {
+      const data = this.state.monthData[index];
+      data.selectDate.push(day);
+      this.setState((prevState) => ({
+        ...this.state,
+        monthData: [...this.state.monthData],
+      }));
+    }
+  };
+
   render() {
     const { monthData } = this.state;
-    console.log(monthData);
     return (
       <>
-        <form
-          onSubmit={(e) => {
-            this.addItem(e);
-          }}
-        >
+        <form onSubmit={this.addItem}>
           <input
             onChange={this.handleInput}
             type='text'
@@ -83,9 +124,11 @@ class Main extends React.Component {
           />
           <button onClick={this.handleDashboard}>Add Activity</button>
         </form>
-        <div className={this.state.display ? 'active-box' : 'hidden'}>
-          <Dashboard monthData={monthData} delete={this.handleDelete} />
-        </div>
+        <Dashboard
+          addSelectedDate={this.addSelectedDate}
+          delete={this.delete}
+          monthData={monthData}
+        />
       </>
     );
   }

@@ -51,7 +51,15 @@ input {
   margin: 50px;
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 8px 8px gray;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.singleMonth {
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 0px 10px 20px gray;
 }
 
 .delete {
@@ -70,9 +78,14 @@ input {
 }
 
 .info-box {
+  box-sizing: border-box;
   background-color: #eff5fb;
-  padding: 20px 50px;
-  height: 200px;
+  place-content: center;
+  place-self: center;
+  height: 280px;
+  width: 260px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 .month {
   border-radius: 5px;
@@ -117,8 +130,3 @@ input {
 .active {
   background-color: #04bb7e;
 }
-
-/* .calender .day {
-  border: 1px solid salmon;
-  background-color: #04bb7e;
-} */
